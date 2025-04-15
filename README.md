@@ -24,7 +24,7 @@ This repository contains an end-to-end RNA-seq data analysis pipeline for The Ca
 - **GSEA.R**  
   An R script to perform Gene Set Enrichment Analysis (GSEA) using the fgsea and msigdbr packages. This script reads differential expression results and identifies significantly enriched gene sets.
 
-- **barplot.R**  
+- **combine_gsea_results.R**  
   Contains code to generate bar plots of normalized enrichment scores (NES) for significant pathways identified by GSEA.
 
 - **Kaplan_Meier.R**  
