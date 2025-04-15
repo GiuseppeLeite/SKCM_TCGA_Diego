@@ -1,7 +1,15 @@
-# ------------------------------ Survival Analysis Pipeline ------------------------------ #
-# Giuseppe Leite, PhD | ggfleite@gmail.com
+# -------------------------------------------------------------------------------------
+# Survival Analysis Pipeline
+#
+# This script performs survival analysis using Kaplan–Meier methods. It reads in clinical 
+# data and relevant expression data, calculates survival estimates, and generates Kaplan–Meier 
+# plots to compare survival outcomes between different groups.
+#
+# Author: Giuseppe Leite, PhD | ggfleite@gmail.com
+# Date: 15/04/2025
+# -------------------------------------------------------------------------------------
 
-# ----------------------------- Load Required Packages ----------------------------------- #
+# ----------------------------- Load Required Packages ----------------------------------- 
 library(ggpubr)
 library(tidyverse)
 library(rstatix)
@@ -13,7 +21,7 @@ library(pheatmap)
 
 set.seed(123)
 
-# ----------------------------- Load and Merge Data -------------------------------------- #
+# ----------------------------- Load and Merge Data -------------------------------------- 
 sample_annotation_cleaned <- read_delim("sample_annotation_cleaned.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
 clustered_samples <- read.csv("clustered_Samples_VSD.csv") %>%
@@ -21,7 +29,7 @@ clustered_samples <- read.csv("clustered_Samples_VSD.csv") %>%
 
 sample_annotation <- merge(sample_annotation_cleaned, clustered_samples, by = "SAMPLE_ID", all = FALSE)
 
-# --------------------------- Format Survival Status Variables --------------------------- #
+# --------------------------- Format Survival Status Variables --------------------------- 
 sample_annotation <- sample_annotation %>%
   mutate(
     OS_STATUS = ifelse(OS_STATUS == "1:DECEASED", 1, 0),
@@ -29,7 +37,7 @@ sample_annotation <- sample_annotation %>%
     cluster = factor(cluster)
   )
 
-# ---------------------- Kaplan-Meier Survival Curve - OS ------------------------------- #
+# ---------------------- Kaplan-Meier Survival Curve - OS ------------------------------- 
 fit_os <- survfit(Surv(OS_MONTHS, OS_STATUS) ~ cluster, data = sample_annotation)
 cluster_colors <- c("#0072B2", "#E69F00", "#009E73", "#D55E00")
 
@@ -51,7 +59,7 @@ print(surv_plot_os)
 dev.copy2pdf(file = "OS_STATUS.pdf", width = 5, height = 7)
 dev.off()
 
-# ---------------------- Kaplan-Meier Survival Curve - DSS ------------------------------ #
+# ---------------------- Kaplan-Meier Survival Curve - DSS ------------------------------ 
 fit_dss <- survfit(Surv(DSS_MONTHS, DSS_STATUS) ~ cluster, data = sample_annotation)
 
 surv_plot_dss <- ggsurvplot(
@@ -73,7 +81,7 @@ dev.copy2pdf(file = "DSS_STATUS.pdf", width = 5, height = 7)
 dev.off()
 
 
-# -------------------------- Cox Proportional Hazards Model - OS ------------------------ #
+# -------------------------- Cox Proportional Hazards Model - OS ------------------------ 
 
 # Unadjusted Model
 cox_model_unadjusted_os <- coxph(Surv(OS_MONTHS, OS_STATUS) ~ relevel(cluster, ref = "2"), data = sample_annotation)
@@ -105,7 +113,7 @@ cox_results_adjusted_os <- data.frame(
 write.csv(cox_results_adjusted_os, "resumo_modelo_cox_OS_adjusted.csv", row.names = FALSE)
 
 
-# -------------------------- Cox Proportional Hazards Model - DSS ------------------------ #
+# -------------------------- Cox Proportional Hazards Model - DSS ------------------------ 
 # Unadjusted Model
 cox_model_unadjusted_dss <- coxph(
   Surv(DSS_MONTHS, DSS_STATUS) ~ relevel(cluster, ref = "2"),
