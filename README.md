@@ -46,7 +46,6 @@ To run the scripts in this repository, you will need:
 - **R Version:** 4.4.2 or later  
 - **Packages:** tidyverse, DESeq2, fgsea, msigdbr, EnhancedVolcano, pheatmap, RColorBrewer, parameters, stats, ggplot2, scales, stringr
 
-Install any missing packages using `install.packages("package_name")` or the appropriate Bioconductor commands.
 
 ## How to Use
 
