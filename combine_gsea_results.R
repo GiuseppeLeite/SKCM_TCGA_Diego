@@ -6,7 +6,7 @@
 # for significantly enriched pathways (padj < 0.05), and combines the filtered results 
 # into a single data frame with an added "contrast" label.
 #
-# Author: Giuseppe Leite
+# Author: Giuseppe Leite, PhD | ggfleite@gmail.com
 # Date: 15/04/2025
 # -------------------------------------------------------------------------------------
 
