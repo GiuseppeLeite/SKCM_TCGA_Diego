@@ -1,7 +1,14 @@
-# --------------------------------------------------------------------------------------------------
-# Comprehensive RNA-seq Data Analysis Pipeline for TCGA: Normalization, Clustering, DEG Analysis, & Volcano Plot Visualization
-# Giuseppe Leite, PhD
-
+# -------------------------------------------------------------------------------------
+# Comprehensive RNA-seq Data Analysis Pipeline for TCGA:
+#      Normalization, Clustering, DEG Analysis, & Volcano Plot Visualization
+#
+# Overview:
+# This pipeline provides an end-to-end workflow for the analysis of TCGA RNA-seq data.
+# It performs data download, preprocessing, normalization (using DESeq2), clustering, differential expression analysis, and visualization through volcano plots.
+#
+# Author: Giuseppe Leite, PhD
+# Email: ggfleite@gmail.com
+# Date: 15/04/2025
 
 # ---------------------------- Load Required Libraries ---------------------------- 
 library(UCSCXenaTools)
