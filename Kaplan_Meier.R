@@ -76,7 +76,7 @@ dev.off()
 # -------------------------- Cox Proportional Hazards Model - OS ------------------------ #
 
 # Unadjusted Model
-cox_model_unadjusted_os <- coxph(Surv(DSS_MONTHS, DSS_STATUS) ~ relevel(cluster, ref = "2"), data = sample_annotation)
+cox_model_unadjusted_os <- coxph(Surv(OS_MONTHS, OS_STATUS) ~ relevel(cluster, ref = "2"), data = sample_annotation)
 
 
 
