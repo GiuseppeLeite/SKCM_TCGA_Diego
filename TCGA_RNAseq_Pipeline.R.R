@@ -280,7 +280,7 @@ write.csv(as.data.frame(res_cluster2_vs_cluster4), file = "DE_results_cluster2_v
 
 # ------------------- Step 15: Define a reusable function to generate volcano plots ----------------------------
 
-create_volcano_plot <- function(data, top_genes, title, file_name, fc_cutoff = 0.38, p_cutoff = 0.048) {
+create_volcano_plot <- function(data, top_genes, title, file_name, fc_cutoff = 1, p_cutoff = 0.048) {
   # Create custom key values for coloring the volcano plot based on log2 fold change and significance
   keyvals <- ifelse(
     data$log2FoldChange < -fc_cutoff & data$padj < p_cutoff, "#00008B",  # Down-regulated genes in blue
